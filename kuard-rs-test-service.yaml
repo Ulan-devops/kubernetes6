@@ -9,6 +9,8 @@ spec:
     app: kuard-rs-test-pod
   ports:
   - name: web
+    nodePort: 31000
     port: 8080
-    protocol: TCP
     targetPort: 8080
+    protocol: TCP
+  type: NodePort
