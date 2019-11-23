@@ -8,10 +8,10 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: nginx-test1
+          serviceName: test-service1
           servicePort: 80
       - path: /test
         backend:
-          serviceName: nginx-test2
+          serviceName: test-service2
           servicePort: 80
 
