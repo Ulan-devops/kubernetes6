@@ -21,8 +21,8 @@ spec:
           key: proxy-port
     volumeMounts:
     - name: config-volume
-      mountPath: /my.conf
-      subPath: nginx-proxy.conf
+      mountPath: /config
+      # subPath: nginx-proxy.conf
   volumes:
   - name: config-volume
     configMap:
