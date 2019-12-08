@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  name: wordpress-mysql-rs
+  labels:
+    app: wordpress-mysql-rs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress-mysql-rs-pod
+  template:
+    metadata:
+      labels:
+        app: wordpress-mysql-rs-pod
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.6
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: db_password 
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: db_name 
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: db_user 
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: db_password 
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+        ports:
+        - containerPort: 3306
+
